@@ -1,0 +1,4 @@
+export const GET_RANDOM = 'GET_RANDOM';
+export const GET_RANDOM_SUCCESS = 'GET_RANDOM_SUCCESS';
+export const GET_RANDOM_FAILURE = 'GET_RANDOM_FAILURE';
+

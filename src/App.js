@@ -1,25 +1,30 @@
 import React from 'react';
-import logo from './logo.svg';
+import { Provider } from 'react-redux';
+import { HashRouter, Switch, Route } from 'react-router-dom';
+import Loader from '../src/components/loader'
+import store from '../src/redux/store'
 import './App.css';
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
+
+const Home = React.lazy(() => import('../src/views/Home')); 
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+    <HashRouter>
+    <React.Suspense fallback={<Loader/>}>
+      <Switch>
+        <Route
+        exact
+        path="/"
+        name="Home Page"
+        render={props => <Home {...props} />}
+        />
+      </Switch>
+    </React.Suspense>
+    </HashRouter>
+    </Provider>
   );
 }
 
